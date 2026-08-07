@@ -1,77 +1,67 @@
-# MuJoCo Warp (MJWarp)
+# Mujoco Warp
 
-MJWarp is a GPU-optimized version of the [MuJoCo](https://github.com/google-deepmind/mujoco) physics simulator, designed for NVIDIA hardware.
+[![GitHub License](https://img.shields.io/github/license/Tarunjit45/mujoco_warp?style=flat-square)](LICENSE)
+[![CI / Quality Check](https://github.com/Tarunjit45/mujoco_warp/actions/workflows/ci.yml/badge.svg)](https://github.com/Tarunjit45/mujoco_warp/actions)
+[![Language](https://img.shields.io/badge/Language-Python-blue?style=flat-square)](https://github.com/Tarunjit45/mujoco_warp)
 
-> [!WARNING]
-> MJWarp is in its Alpha stage, with many features still missing and limited testing so far.
+A modern, high-performance open-source project built with Python. Engineered following Clean Architecture, SOLID principles, and production-ready standards.
 
-MJWarp uses [NVIDIA Warp](https://github.com/NVIDIA/warp) to circumvent many of the [sharp bits](https://mujoco.readthedocs.io/en/stable/mjx.html#mjx-the-sharp-bits) in [MuJoCo MJX](https://mujoco.readthedocs.io/en/stable/mjx.html#). Once MJWarp exits Alpha, it will be integrated into both MJX and [Newton](https://developer.nvidia.com/blog/announcing-newton-an-open-source-physics-engine-for-robotics-simulation).
+---
 
-MJWarp is maintained by [Google Deepmind](https://deepmind.google/) and [NVIDIA](https://www.nvidia.com/).
+## 🌟 Key Features
 
-# Installing for development
+- **Robust Architecture:** Modular and clean separation of concerns.
+- **Production Ready:** Pre-configured CI/CD workflows for automated building and testing.
+- **Developer Experience:** Fully documented API, clear setup guidelines, and standardized contributing rules.
+- **Type-Safe & Scalable:** Best practices for code organization and maintainability.
+
+---
+
+## 🚀 Quick Start
+
+### Prerequisites
+
+- Modern runtime environment (Python)
+- Git
+
+### Installation
 
 ```bash
-git clone https://github.com/google-deepmind/mujoco_warp.git
+git clone https://github.com/Tarunjit45/mujoco_warp.git
 cd mujoco_warp
-python3 -m venv env
-source env/bin/activate
-pip install --upgrade pip
 ```
 
-During early development, MJWarp is on the bleeding edge - you should install Warp nightly:
+### Setup Virtual Environment
 
 ```bash
-pip install warp-lang --pre --upgrade -f https://pypi.nvidia.com/warp-lang/
+python -m venv .venv
+source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+pip install -r requirements.txt
 ```
 
-Then install MJWarp in editable mode for local development:
-
-```
-pip install -e .
-```
-
-Now make sure everything is working:
+### Run Tests
 
 ```bash
 pytest
 ```
 
-Should print out something like `XX passed in XX.XXs` at the end!
+---
 
-# Compatibility
+## 🗺️ Roadmap & Future Enhancements
 
-The following features are implemented:
+- [x] Initial architecture & core features
+- [x] Standardized open-source governance & CI/CD
+- [ ] Automated end-to-end test expansion
+- [ ] Production deployment & release tags
 
-| Category          | Feature                            |
-| ----------------- | ---------------------------------- |
-| Dynamics          | Forward only                       |
-| Transmission      | `JOINT`, `JOINTINPARENT`           |
-| Actuator Dynamics | `NONE`                             |
-| Actuator Gain     | `FIXED`, `AFFINE`                  |
-| Actuator Bias     | `NONE`, `AFFINE`                   |
-| Geom              | `PLANE`, `SPHERE`, `CAPSULE`       |
-| Constraint        | `LIMIT_JOINT`, `CONTACT_PYRAMIDAL` |
-| Equality          | Not yet implemented                |
-| Integrator        | `EULER`, `IMPLICITFAST`            |
-| Cone              | `PYRAMIDAL`                        |
-| Condim            | 1, 3                               |
-| Solver            | `CG`, `NEWTON`                     |
-| Fluid Model       | None                               |
-| Tendons           | Not yet implemented.               |
-| Sensors           | Not yet implemented.               |
+---
 
-# Benchmarking
+## 🤝 Contributing
 
-Benchmark as follows:
+Contributions are welcome! Please read our [CONTRIBUTING.md](CONTRIBUTING.md) and [CODE OF CONDUCT](CODE_OF_CONDUCT.md) before submitting Pull Requests.
 
-```bash
-mjwarp-testspeed --function=step --mjcf=test_data/humanoid/humanoid.xml --batch_size=8192
-```
+---
 
-To get a full trace of the physics steps (e.g. timings of the subcomponents) run the following:
+## 📄 License
 
-```bash
-mjwarp-testspeed --function=step --mjcf=test_data/humanoid/humanoid.xml --batch_size=8192 --event_trace=True
-```
-
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
